@@ -45,6 +45,11 @@ class _WebViewScreenState extends State<WebViewScreen> with Helpers {
         body: SafeArea(
           child: Stack(
             children: [
+              isLoading == false
+                  ? Container()
+                  : const Center(
+                child: CircularProgressIndicator(),
+              ),
               Container(
                 padding: EdgeInsets.symmetric(
                   vertical: 16.sp,
@@ -52,8 +57,7 @@ class _WebViewScreenState extends State<WebViewScreen> with Helpers {
                 child: WebView(
                     javascriptMode: JavascriptMode.unrestricted,
                     initialUrl: main_page,
-
-                    onPageStarted: (s){
+                    onPageStarted: (s) {
                       setState(() {
                         isLoading = true;
                       });
@@ -92,7 +96,6 @@ class _WebViewScreenState extends State<WebViewScreen> with Helpers {
                     }),
               ),
 
-              isLoading == false? Container(): const Center(child: CircularProgressIndicator(),)
             ],
           ),
         ),
